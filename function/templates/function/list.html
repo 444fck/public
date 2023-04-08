@@ -1,0 +1,50 @@
+{% extends 'function/base.html' %}
+
+{% block content %}
+{% if result %}
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Source</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in result %}
+            <tr>
+                <td>{{ row.0 }}</td>
+                <td>{{ row.1 }}</td>
+                <td>{{ row.2 }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+    {% if pages %}
+        {% if pages|length > 1 %}
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number}}">previous</a>
+                {% endif %}
+
+                {% for page_num in pages %}
+                    {% if page_num == page_obj.number %}
+                        <span class="page-current">{{ page_num }}</span>
+                    {% else %}
+                        <a href="?page={{ page_num }}">{{ page_num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number}}">next</a>
+                {% endif %}
+            </span>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% endif %}
+{% endblock content %}

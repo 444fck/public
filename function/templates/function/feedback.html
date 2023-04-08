@@ -1,0 +1,19 @@
+{% extends 'function/base.html' %}
+
+{% block content %}
+    <form action="{% url 'function:feedback' %}" method="post">
+        {% csrf_token %}
+        <h1>FeedBack</h1>
+
+        <label for="name">Your name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="feedback">Feedback:</label>
+        <textarea name="feedback" id="feedback" cols="30" rows="10" required></textarea>
+        <br>
+        <button type="submit">Submit Feedback</button>
+    </form>
+{% endblock content %}

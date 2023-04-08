@@ -1,0 +1,40 @@
+<nav class="navBarDashboard">
+  <div class="left">
+    <ul>
+      <a href="{% url "home" %}">
+        <li>Dashboard</li>
+      </a>
+
+      <a href="{% url 'function:config'%}">
+        <li>CẤU HÌNH</li>
+      </a>
+
+      <a href="{% url 'function:list'%}">
+        <li>KẾT QUẢ</li>
+      </a>
+
+      <a href="{% url 'function:search' %}">
+        <li>TÌM KIẾM</li>
+      </a>
+      <a href="#">
+         <li>TRẠNG THÁI</li>
+      </a>
+    </ul>
+  </div>
+
+  <form class="form-inline right" method="POST" action="{% url 'function:search' %}">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="searched">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+
+
+<!-- <nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Navbar</a>
+  <form class="form-inline" method="POST" action="{% url 'function:search' %}">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav> -->

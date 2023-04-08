@@ -1,0 +1,48 @@
+{% extends 'function/base.html' %}
+
+{% block content %}
+
+<!-- {% if context %}
+        <h1>present key: {{context}}</h1>
+    {% endif %} -->
+<main class="config_table">
+    <h1>CONFIG BOARD</h1>
+    <form class="form__input" method="POST" action="{% url 'function:config' %}">
+        {% csrf_token %}
+
+        <section class="input__form firstName__input">
+            <label for="firstName">First Name: </label>
+            <input type="text" placeholder="First Name" id="firstName" autocomplete="off" name='firstname'>
+        </section>
+
+        <section class="input__form lastName__input">
+            <label for="lastName">Last Name: </label>
+            <input type="text" placeholder="Last Name" id="lastName" autocomplete="off" name='lastname'>
+        </section>
+
+        <section class="input__form email__input">
+            <label for="email">Email: </label>
+            <input type="email" placeholder="Email" id="email" autocomplete="off" name='email'>
+        </section>
+
+        <section class="input__form time__input">
+            <label for="time">Input time: </label>
+            <input id="time" type="input" placeholder="seconds" autocomplete="off" name="config">
+        </section>
+
+        {% comment %} <section class="input__form email__input idNumber__input">
+            <label for="idNumber">ID Number: </label>
+            <input type="number" placeholder="Id Number" id="idNumber" autocomplete="off">
+        </section> {% endcomment %}
+
+        <section class="input__form email__input source__input">
+            <label>Source: </label>
+            <select name="source"required>
+                <option value="misp" {% if selected_source == "misp"%}selected{% endif %}>MISP</option>
+                <option value="zoneh" {% if selected_source == "zoneh"%}selected{% endif %}>ZoneH</option>
+            </select>
+        </section>
+        <button class="form__button" type="submit">Config</button>
+    </form>
+</main>
+{% endblock content %}
