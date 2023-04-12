@@ -43,6 +43,7 @@
             </select>
         </section>
         <button class="form__button" type="submit">Config</button>
-    </form>
+        <button class="btn-pause" onclick="location.href={% url 'function:pause_job' %}">Pause Job</button>
+        <button class="btn-remuse" onclick="location.href={% url 'function:remuse_job' %}">Remuse Job</button>
 </main>
 {% endblock content %}

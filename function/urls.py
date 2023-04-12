@@ -6,6 +6,7 @@ urlpatterns = [
     path('search/', views.feed_search, name='search'),
     path('list/', views.list, name='list'),
     path('config/',views.config, name='config'),
-    path('chart/', views.chart, name='chart'),
-    path('feedback/', views.feedback, name='feedback')
+    path('pause_job/', views.pause_job, name='pause_job'),
+    path('resume_job/', views.remuse_job, name='remuse_job'),
+    path('feedback/', views.feedback, name='feedback'),
 ]

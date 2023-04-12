@@ -11,6 +11,7 @@ from .models import Configuration, FeedBack
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
+import hashlib
 
 # Create your views here.
 mydb = mysql.connector.connect(
@@ -39,12 +40,13 @@ def auto_del_dup():
     cursor.execute(auto)
     mydb.commit()
     print("================Task del running=================")
-scheduler.add_job(auto_del_dup, 'interval', seconds=30)
-
+scheduler.add_job(auto_del_dup, 'interval', seconds=600)
 
 
 class JobScheduler:
     jobs = {}
+    links = {}
+    paused = False
 
     @classmethod
     def add_job(cls, url, interval):
@@ -62,32 +64,52 @@ class JobScheduler:
             job = cls.jobs.pop(url)
             job.remove()
 
+    @classmethod
+    def pause(cls):
+        cls.paused = True
+
+    @classmethod
+    def resume(cls):
+        cls.paused = False
+
     @staticmethod
     def job_function(url):
         if url == 'http://www.zone-h.org/rss/specialdefacements':
-            feed = feedparser.parse(url)
-            now = datetime.now()
-            current_time = now.strftime("%H:%M:%S")
-            print("Current Time =", current_time)
-            sql = """INSERT IGNORE INTO web(title, link, published)
-                    VALUES (%(title)s, %(link)s, %(published)s)"""
+            if not JobScheduler.paused:
+                feed = feedparser.parse(url)
+                now = datetime.now()
+                current_time = now.strftime("%H:%M:%S")
+                print("Current Time =", current_time)
+                sql = """INSERT IGNORE INTO web(title, link, published)
+                        VALUES (%(title)s, %(link)s, %(published)s)"""
 
-            for entry in feed.entries:
-                data = {
-                    'title': entry.title,
-                    'link' : entry.link,
-                    'published' : entry.published,
-                }
-                cursor.execute(sql, data)
-                mydb.commit()
-            print('zone-h task is running')
+                for entry in feed.entries:
+                    link_hash = hashlib.md5(entry.link.encode('utf-8')).hexdigest()
+                    if link_hash not in JobScheduler.links:
+                        data = {
+                            'title': entry.title,
+                            'link' : entry.link,
+                            'published' : entry.published,
+                        }
+                        cursor.execute(sql, data)
+                        mydb.commit()
+                        JobScheduler.links[link_hash] = entry.link
+                        print('Added new link:', entry.link)
+                    else:
+                        print('Duplicated link:', entry.link)
+                print('zone-h task is running')
+            else:
+                print('zone-h task is paused')
         else:
             print('Unkown task')
 
     @staticmethod
     def job_function_misp(url):
         if url == 'https://www.example.com/misp':
-            print('misp task is running')
+            if not JobScheduler.paused:
+                print('misp task is running')
+            else:
+                print('misp task is paused')
         else:
             print('Unkown task')
 
@@ -105,15 +127,22 @@ def scheduler_start_misp():
     thread = threading.Thread(target=run_scheduler)
     thread.start()
 
+def pause_job(request):
+    JobScheduler.pause()
+    return HttpResponse('Job paused')
+
+def remuse_job(request):
+    JobScheduler.resume()
+    return HttpResponse('Job remused')
 
 def config(request):
     global default
     config = default
-    selected_source = request.POST.get('source', 'zoneh')
-    config = request.POST.get("config")
     firstname = request.POST.get('firstname')
     lastname = request.POST.get('lastname')
     email = request.POST.get('email')
+    selected_source = request.POST.get('source', 'zoneh')
+    config = request.POST.get("config")
     if config and config.isdigit():
         default = int(config)
         test = int(config)
@@ -173,9 +202,6 @@ def list(request):
 
     mydb.commit()
     return render(request, 'function/list.html',{'result': result, 'pages':pages})
-
-def chart(request):
-    return render(request, 'function/chart.html')
 
 def feedback(request):
     if request.method == 'POST':

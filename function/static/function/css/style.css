@@ -1,216 +1,23 @@
-/* * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-} */
-
 body {
     display: grid;
     grid-auto-columns: 1fr 4fr;
     place-items: center;
 }
 
-.table>tbody>tr>td {
-    word-wrap: break-word;
-}
-
-:root {
-    --sidebar_width: 260px;
-}
-
-
-
-/* NAVBAR */
-
-/* .navBarDashboard {
-    height: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px;
-} */
-
-/* .left {
-    width: fit-content;
-    height: 100%;
-}
-
-.left ul {
-    width: fit-content;
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.left ul li {
-    list-style-type: none;
-    text-transform: uppercase;
-    width: 150px;
-    height: 60px;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-}
-
-.left ul li:hover {
-    background-color: #ccc;
-}
-
-.right {
-    width: 300px;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-.right input {
-    width: 70%;
-    height: 70%;
-    padding: 9px;
-    font-size: 16px;
-    border-radius: 12px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-
-.right button {
-    width: 40%;
-    height: 70%;
-    padding: 9px;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #78C5DC;
-    border: none;
-    border-radius: 6px;
+.btn-pause {
+    background-color: red;
     color: white;
-    font-weight: 700;
-    font-size: 1.2rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-
-/* LIST DATA */
-/*.container-data {
-    height: fit-content;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    padding: 50px;
-}
-
-.container-data table {
-    width: 80%;
-    text-align: center;
-    border-collapse: collapse;
-    border: 0px solid black;
-    border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
-
-.container-data table thead {
-    text-transform: uppercase;
-    font-size: 1.3rem;
-}
-
-.container-data table thead th {
-    padding: 20px;
-    border-bottom: 1px solid black;
-}
-
-.container-data table tbody tr:nth-child(even) {
-    background-color: #cecfc3;
-}
-
-.container-data table tbody td {
-    padding: 5px;
-}
-
-
-.container-data table tbody tr:hover {
-    background-color: #759CC9;
-}
-
-/* config table
-.config-Table {
-    height: 500px;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin: 75px auto;
-    border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-}
-
-.config-Table h1 {
-    padding: 50px;
-    text-transform: uppercase;
-}
-
-.config-Table form {
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.config-Table button {
-    width: 60%;
-    height: 50px;
-    margin: 20px 0px;
-    background-color: #78C5DC;
     border: none;
-    border-radius: 6px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-remuse {
+    background-color: green;
     color: white;
-    font-weight: 700;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-}
-
-.input-form {
-    width: 60%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.input-form label {
-    height: 100%;
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.input-form select {
-    width: 70%;
-    height: 100%;
-    padding: 10px;
-    background-color: transparent;
-    /* border: 0.5px solid black;
     border: none;
-    border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
-.input-form input {
-    width: 70%;
     padding: 10px;
-    border: none;
-    border-bottom: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
 }
-
-.input-form input:focus {
-    outline: none;
-    border-bottom: 1px solid blue;
-} */
