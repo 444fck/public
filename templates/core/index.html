@@ -11,7 +11,7 @@
 <link href="{%static 'core/css/main.css' %}" rel="stylesheet" />
 <link rel="apple-touch-icon" sizes="76x76" href="{%static 'core/img/apple-icon.png' %}">
 <link rel="icon" type="image/png" href="{%static 'core/img/favicon.ico' %}">
-
+<link rel="stylesheet" href="{%static 'core/css/chart.css'%}">
 {% endblock css%}
 
 {% block content %}
@@ -27,48 +27,18 @@
         </ul>
     </section>
 
-    {% comment %} <section class="main__content">
-        <div class="information_data">
-            <div class="data__perform">
-                <h1>PERFORMANCE</h1>
-                <div class="percent">
-                    <section class="data_loading">
-                        <h2>78%</h2>
-                        <p class="success">Success</p>
-                    </section>
-                    <section class="data_loading">
-                        <h2>22%</h2>
-                        <p class="loading">Loading</p>
-                    </section>
-                </div>
-                <div class="annouce">
-                    <p class="success">Dectect Malware from US</p>
-                    <p class="danger">Malware from US</p>
-                </div>
-            </div>
+    <div class="chart-container pie-chart">
+        <p>Pie Chart</p>
+        <canvas id='myPieChart'></canvas>
+    </div>
 
-            <div class="chart__data">
-                <p>Chart data</p>
-            </div>
-        </div>
-        <div class="total_data">
-            <div class="news">
-                <p>1</p>
-                <h1>THIS DAY</h1>
-            </div>
-            <div class="news">
-                <p>2</p>
-                <h1>THIS WEEK</h1>
-            </div>
-            <div class="news">
-                <p>3</p>
-                <h1>THIS MONTH</h1>
-            </div>
-        </div>
-    </section> {% endcomment %}
-
+    <div class="chart-container bar-chart">
+        <p>Bar Chart</p>
+       <canvas id="myBarChart"></canvas>
+    </div>
 </div>
 {% endblock content %}
+
 
 {% block js %}
 <!--   Core JS Files   -->
@@ -93,6 +63,60 @@
 
         demo.showNotification();
 
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Pie Chart
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: '{{ chart_data_pie.type }}',
+        data: {
+            labels: {{ chart_data_pie.labels|safe }},
+            datasets: [{
+                data: {{ chart_data_pie.values|safe }},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor:[
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false
+        }
+    });
+    // Bar Chart
+    var ctxBar = document.getElementById('myBarChart').getContext('2d');
+    var myBarChart = new Chart(ctxBar, {
+        type: '{{ chart_data_bar.type }}',
+        data: {
+            labels: {{ chart_data_bar.labels|safe}},
+            datasets: [{
+                label: '# of Links',
+                data: {{ chart_data_bar.values|safe}},
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
     });
 </script>
 {% endblock js %}

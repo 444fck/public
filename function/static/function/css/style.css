@@ -3,7 +3,7 @@ body {
     grid-auto-columns: 1fr 4fr;
     place-items: center;
 }
-
+/* for button pause and remuse */
 .btn-pause {
     background-color: red;
     color: white;

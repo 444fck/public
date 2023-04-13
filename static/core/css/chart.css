@@ -1,0 +1,13 @@
+.layout .chart-container {
+    display: inline-block;
+    width: 45%;
+    margin: 10px;
+}
+
+.layout .pie-chart {
+    float: left;
+}
+
+.layout .bar-chart {
+    float: right;
+}
