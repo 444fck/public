@@ -204,11 +204,11 @@ def list(request):
     page = request.GET.get('page', 1)
     start = (int(page) - 1) * 10
 
-    list = f" SELECT * FROM WEB LIMIT {start}, 10;"
+    list = f" SELECT * FROM web LIMIT {start}, 10;"
     cursor.execute(list)
     result = cursor.fetchall()
 
-    total = "SELECT COUNT(*) FROM WEB;"
+    total = "SELECT COUNT(*) FROM web;"
     cursor.execute(total)
     count = cursor.fetchone()[0]
     pages = range(1, int(count / 10) + 2)
