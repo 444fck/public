@@ -72,6 +72,13 @@ class JobScheduler:
     def resume(cls):
         cls.paused = False
 
+    @classmethod
+    def stop_all_job(cls):
+        for url, job in cls.jobs.items():
+            job.remove()
+        cls.jobs = {}
+        cls.links = {}
+
     @staticmethod
     def job_function(url):
         if url == 'http://www.zone-h.org/rss/specialdefacements':
@@ -135,6 +142,10 @@ def remuse_job(request):
     JobScheduler.resume()
     return HttpResponse('Job remused')
 
+def stop_all_job(request):
+    JobScheduler.stop_all_job()
+    return HttpResponse('Job Stopped')
+
 def config(request):
     global default
     config = default
@@ -149,6 +160,7 @@ def config(request):
         timesql = "UPDATE `setting` SET time=" + str(config) + " WHERE name='admin';"
         cursor.execute(timesql)
         mydb.commit()
+        JobScheduler.stop_all_job() #Stop all job to start
         if selected_source == 'misp':
             print('this is misp')
             JobScheduler.remove_job('http://www.zone-h.org/rss/specialdefacements')
@@ -156,7 +168,8 @@ def config(request):
         elif selected_source == 'zoneh':
             print('this is zoneh')
             JobScheduler.remove_job('https://www.example.com/misp')
-            JobScheduler.add_job('http://www.zone-h.org/rss/specialdefacements', test)
+            # JobScheduler.add_job('http://www.zone-h.org/rss/specialdefacements', test)
+            scheduler_start_zoneh()
         new_config = Configuration(firstname=firstname, lastname=lastname, email=email, config=default, source=selected_source)
         new_config.save()
         print(new_config.firstname, new_config.lastname, new_config.email, new_config.config, new_config.source)

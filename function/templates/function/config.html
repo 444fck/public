@@ -43,7 +43,30 @@
             </select>
         </section>
         <button class="form__button" type="submit">Config</button>
-        <button class="btn-pause" onclick="location.href={% url 'function:pause_job' %}">Pause Job</button>
-        <button class="btn-remuse" onclick="location.href={% url 'function:remuse_job' %}">Remuse Job</button>
+        <button class="btn-pause" onclick="pauseJob()">Pause Job</button>
+        <button class="btn-remuse" onclick="remuseJob()">Remuse Job</button>
+        <button class="btn-stop" onclick="stopJob()">Stop Job</button>
 </main>
 {% endblock content %}
+
+{% block js %}
+    <script>
+        function pauseJob() {
+            alert("Job paused!")
+
+            window.location.href = "{% url 'function:pause_job'%}"
+        }
+
+        function remuseJob() {
+            alert("Job remused!")
+
+            window.location.href = "{% url 'function:remuse_job' %}"
+        }
+
+        function stopJob() {
+            alert("Job stopped!")
+
+            window.location.href = "{% url 'function:stop_job' %}"
+        }
+    </script>
+{% endblock js %}
