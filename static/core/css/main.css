@@ -77,6 +77,67 @@ body {
     color: white;
 }
 
+.btn__title {
+    font-size: 64px;
+}
+
+.chart_content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+.feedback_form {
+    width: 600px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.feedback_form h1 {
+    font-size: 48px;
+}
+
+.feedback_form section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+
+.feedback_form section input {
+    width: 100%;
+}
+
+.feedback_form section label {
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.feedback_form section textarea {
+    width: 100%;
+}
+
+.feedback_form button {
+    width: 50%;
+    height: 40px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
 /* main content */
 
 /* .main__content {
@@ -219,7 +280,7 @@ body {
 
 .main__content__subpage {
     width: 100%;
-    height: 800px;
+    height: fit-content;
     background-color: #f1f0ee;
     display: flex;
     justify-content: center;
@@ -280,6 +341,12 @@ body {
     padding: 5px;
 }
 
+.form__config {
+    grid-area: form__config;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
 .form__button {
     grid-area: form__button;
     width: 400px;
@@ -303,7 +370,7 @@ body {
     grid-template-areas: "firstName__input lastName__input"
         "email__input phone__input"
         "idNumber__input source__input"
-        "form__button form__button";
+        "form__config form__config";
 }
 
 .input__form {
@@ -337,7 +404,7 @@ body {
 
 /* table */
 .styled-table {
-    width: 80%;
+    width: 100% !important;
     height: 80%;
     border-collapse: collapse;
     margin: 25px 0;
