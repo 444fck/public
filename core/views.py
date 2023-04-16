@@ -5,7 +5,7 @@ def home(request):
     conn = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="phongquoc",
+        password="hoangphuc34",
         database="nckh"
     )
     cur = conn.cursor()

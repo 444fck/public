@@ -17,7 +17,7 @@ import hashlib
 mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="phongquoc",
+        password="hoangphuc34",
         database="nckh"
     )
 cursor = mydb.cursor()

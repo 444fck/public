@@ -26,17 +26,11 @@
             <input id="time" type="input" placeholder="seconds" autocomplete="off" name="config">
         </section>
 
-        {% comment %}
-        <section class="input__form email__input idNumber__input">
-            <label for="idNumber">ID Number: </label>
-            <input type="number" placeholder="Id Number" id="idNumber" autocomplete="off">
-        </section> {% endcomment %}
-
         <section class="input__form email__input source__input">
             <label>Source: </label>
             <select name="source" required>
-                <option value="misp" {% if selected_source=="misp" %}selected{% endif %}>MISP</option>
-                <option value="zoneh" {% if selected_source=="zoneh" %}selected{% endif %}>ZoneH</option>
+                <option value="misp" {% if selected_source and selected_source == 'misp' %}selected{% endif %}>MISP</option>
+                <option value="zoneh" {% if selected_source and selected_source == 'zoneh' %}selected{% endif %}>ZoneH</option>
             </select>
         </section>
         <section class="form__config">

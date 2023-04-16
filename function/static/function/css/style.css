@@ -2,22 +2,60 @@ body {
     display: grid;
     grid-auto-columns: 1fr 4fr;
     place-items: center;
-}
-/* for button pause and remuse */
-.btn-pause {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+  }
 
-.btn-remuse {
-    background-color: green;
-    color: white;
+  .btn-pause {
+    background-color: #c0392b;
+    color: #fff;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-}
+    box-shadow: 0 5px 0 #8e2800;
+    text-shadow: 0 -1px 0 #8e2800;
+    transition: all 0.1s ease-in-out;
+    margin-right: 10px;
+  }
+
+  .btn-pause:hover {
+    background-color: #d24d3e;
+    box-shadow: 0 3px 0 #8e2800;
+    transform: translateY(2px);
+  }
+
+  .btn-remuse {
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #1e8449;
+    text-shadow: 0 -1px 0 #1e8449;
+    transition: all 0.1s ease-in-out;
+    margin-right: 10px;
+  }
+
+  .btn-remuse:hover {
+    background-color: #2ecc71;
+    box-shadow: 0 3px 0 #1e8449;
+    transform: translateY(2px);
+  }
+
+  .btn-stop {
+    background-color: #34495e;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #1a2533;
+    text-shadow: 0 -1px 0 #1a2533;
+    transition: all 0.1s ease-in-out;
+  }
+
+  .btn-stop:hover {
+    background-color: #2c3e50;
+    box-shadow: 0 3px 0 #1a2533;
+    transform: translateY(2px);
+  }
