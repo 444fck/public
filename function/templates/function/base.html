@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -32,7 +33,7 @@
             background-color: #ddd;
         }
 
-        .pagination .page-current{
+        .pagination .page-current {
             background-color: #4CAF50;
             border: 1px solid #4CAF50;
             color: white;
@@ -55,55 +56,62 @@
         </section>
 
         <section class="main__content__subpage">
-            {% block content %}
-            {% endblock content %}
+            <div>
+                {% block content %}
+                {% endblock content %}
+            </div>
+
+            <div>
+                {% block js %}
+                {% endblock js %}</div>
         </section>
+    </div>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-             // Pie Chart
-            var ctx = document.getElementById('myPieChart').getContext('2d');
-            var myPieChart = new Chart(ctx, {
-                type: '{{ chart_data_pie.type }}',
-                data: {
-                labels: {{ chart_data_pie.labels|safe }},
-                datasets: [{
-                    data: {{ chart_data_pie.values|safe }},
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderColor:[
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)'
-                    ],
-                    borderWidth: 1
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Pie Chart
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+            type: '{{ chart_data_pie.type }}',
+            data: {
+                labels: {{ chart_data_pie.labels | safe }},
+        datasets: [{
+            data: {{ chart_data_pie.values | safe }},
+            backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)'
+        ],
+            borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)'
+        ],
+            borderWidth: 1
                 }]
             },
-                options: {
-                responsive: false,
+        options: {
+            responsive: false,
                 maintainAspectRatio: false
-            }
+        }
         });
-    // Bar Chart
-    var ctxBar = document.getElementById('myBarChart').getContext('2d');
-    var myBarChart = new Chart(ctxBar, {
-        type: '{{ chart_data_bar.type }}',
-        data: {
-            labels: {{ chart_data_bar.labels|safe}},
-            datasets: [{
-                label: '# of Links',
-                data: {{ chart_data_bar.values|safe}},
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+        // Bar Chart
+        var ctxBar = document.getElementById('myBarChart').getContext('2d');
+        var myBarChart = new Chart(ctxBar, {
+            type: '{{ chart_data_bar.type }}',
+            data: {
+                labels: {{ chart_data_bar.labels | safe }},
+        datasets: [{
+            label: '# of Links',
+            data: {{ chart_data_bar.values | safe }},
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
             }]
         },
         options: {
             responsive: false,
-            maintainAspectRatio: false,
-            scales: {
+                maintainAspectRatio: false,
+                    scales: {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
@@ -114,8 +122,7 @@
     });
     </script>
 
-    {% block js %}
-    {% endblock js %}
+
 </body>
 
 </html>

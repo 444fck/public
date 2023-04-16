@@ -27,15 +27,17 @@
         </ul>
     </section>
 
-    <div class="chart-container pie-chart">
-        <p>Pie Chart</p>
-        <canvas id='myPieChart'></canvas>
-    </div>
+    <section class="chart_content">
+        <div class="chart-container pie-chart">
+            <p>Pie Chart</p>
+            <canvas id='myPieChart'></canvas>
+        </div>
 
-    <div class="chart-container bar-chart">
-        <p>Bar Chart</p>
-       <canvas id="myBarChart"></canvas>
-    </div>
+        <div class="chart-container bar-chart">
+            <p>Bar Chart</p>
+            <canvas id="myBarChart"></canvas>
+        </div>
+    </section>
 </div>
 {% endblock content %}
 
@@ -73,50 +75,50 @@
     var myPieChart = new Chart(ctx, {
         type: '{{ chart_data_pie.type }}',
         data: {
-            labels: {{ chart_data_pie.labels|safe }},
-            datasets: [{
-                data: {{ chart_data_pie.values|safe }},
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor:[
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1
+            labels: {{ chart_data_pie.labels | safe }},
+    datasets: [{
+        data: {{ chart_data_pie.values | safe }},
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)'
+    ],
+        borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)'
+    ],
+        borderWidth: 1
             }]
         },
-        options: {
-            responsive: false,
+    options: {
+        responsive: false,
             maintainAspectRatio: false
-        }
+    }
     });
     // Bar Chart
     var ctxBar = document.getElementById('myBarChart').getContext('2d');
     var myBarChart = new Chart(ctxBar, {
         type: '{{ chart_data_bar.type }}',
         data: {
-            labels: {{ chart_data_bar.labels|safe}},
-            datasets: [{
-                label: '# of Links',
-                data: {{ chart_data_bar.values|safe}},
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+            labels: {{ chart_data_bar.labels | safe }},
+    datasets: [{
+        label: '# of Links',
+        data: {{ chart_data_bar.values | safe }},
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
             }]
         },
-        options: {
-            responsive: false,
+    options: {
+        responsive: false,
             maintainAspectRatio: false,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
+                scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
         }
+    }
     });
 </script>
 {% endblock js %}

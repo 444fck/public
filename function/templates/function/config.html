@@ -1,10 +1,6 @@
 {% extends 'function/base.html' %}
 
 {% block content %}
-
-<!-- {% if context %}
-        <h1>present key: {{context}}</h1>
-    {% endif %} -->
 <main class="config_table">
     <h1>CONFIG BOARD</h1>
     <form class="form__input" method="POST" action="{% url 'function:config' %}">
@@ -30,43 +26,46 @@
             <input id="time" type="input" placeholder="seconds" autocomplete="off" name="config">
         </section>
 
-        {% comment %} <section class="input__form email__input idNumber__input">
+        {% comment %}
+        <section class="input__form email__input idNumber__input">
             <label for="idNumber">ID Number: </label>
             <input type="number" placeholder="Id Number" id="idNumber" autocomplete="off">
         </section> {% endcomment %}
 
         <section class="input__form email__input source__input">
             <label>Source: </label>
-            <select name="source"required>
-                <option value="misp" {% if selected_source == "misp"%}selected{% endif %}>MISP</option>
-                <option value="zoneh" {% if selected_source == "zoneh"%}selected{% endif %}>ZoneH</option>
+            <select name="source" required>
+                <option value="misp" {% if selected_source=="misp" %}selected{% endif %}>MISP</option>
+                <option value="zoneh" {% if selected_source=="zoneh" %}selected{% endif %}>ZoneH</option>
             </select>
         </section>
-        <button class="form__button" type="submit">Config</button>
-        <button class="btn-pause" onclick="pauseJob()">Pause Job</button>
-        <button class="btn-remuse" onclick="remuseJob()">Remuse Job</button>
-        <button class="btn-stop" onclick="stopJob()">Stop Job</button>
+        <section class="form__config">
+            <button class="form__button" type="submit">Config</button>
+            <button class="btn-pause" onclick="pauseJob()">Pause Job</button>
+            <button class="btn-remuse" onclick="remuseJob()">Remuse Job</button>
+            <button class="btn-stop" onclick="stopJob()">Stop Job</button>
+        </section>
 </main>
 {% endblock content %}
 
 {% block js %}
-    <script>
-        function pauseJob() {
-            alert("Job paused!")
+<script>
+    function pauseJob() {
+        alert("Job paused!")
 
-            window.location.href = "{% url 'function:pause_job'%}"
-        }
+        window.location.href = "{% url 'function:pause_job'%}"
+    }
 
-        function remuseJob() {
-            alert("Job remused!")
+    function remuseJob() {
+        alert("Job remused!")
 
-            window.location.href = "{% url 'function:remuse_job' %}"
-        }
+        window.location.href = "{% url 'function:remuse_job' %}"
+    }
 
-        function stopJob() {
-            alert("Job stopped!")
+    function stopJob() {
+        alert("Job stopped!")
 
-            window.location.href = "{% url 'function:stop_job' %}"
-        }
-    </script>
+        window.location.href = "{% url 'function:stop_job' %}"
+    }
+</script>
 {% endblock js %}

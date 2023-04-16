@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'function',
-    'tailwind',
     'theme',
     'django_browser_reload',
 ]
@@ -91,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nckh',
         'USER':'root',
-        'PASSWORD':'hoangphuc34',
+        'PASSWORD':'phongquoc',
         'HOST':'127.0.0.1',
         'PORT':'3306'
     }
