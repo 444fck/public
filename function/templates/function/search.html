@@ -1,31 +1,31 @@
 {% extends 'function/base.html' %}
 
 {% block content %}
-<h2 class="btn__title">Search Results</h2>
+<h2 class="btn_title">Search Results</h2>
 <form action="{% url 'function:search' %}" method="POST">
     {% csrf_token %}
     <input type="text" name="searched" placeholder="Search...">
     <button type="submit">Search</button>
 </form>
-{% if result %}
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Link</th>
-        </tr>
-    </thead>
+    {% if result %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Link</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        {% for row in result %}
-        <tr>
-            <td>{{ row.0 }}</td>
-            <td>{{ row.1 }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>No results found.</p>
-{% endif %}
+        <tbody>
+            {% for row in result %}
+            <tr>
+                <td>{{ row.0 }}</td>
+                <td>{{ row.1 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    {% else %}
+        <div class="no-result">{{ noresult }}</div>
+    </table>
+    {% endif %}
 {% endblock content %}

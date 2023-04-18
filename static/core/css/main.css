@@ -81,14 +81,6 @@ body {
     font-size: 64px;
 }
 
-.chart_content {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-}
-
 .feedback_form {
     width: 600px;
     height: 500px;

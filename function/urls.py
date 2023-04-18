@@ -9,6 +9,7 @@ urlpatterns = [
     path('pause_job/', views.pause_job, name='pause_job'),
     path('resume_job/', views.remuse_job, name='remuse_job'),
     path('stop/', views.stop_all_job, name='stop_job'),
+    path('filter/', views.filter, name='filter'),
     path('feedback/', views.feedback, name='feedback'),
 
 ]

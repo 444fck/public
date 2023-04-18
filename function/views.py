@@ -13,11 +13,14 @@ from django.views.decorators.csrf import csrf_protect
 
 import hashlib
 
+from django.core.paginator import Paginator
+import math
+
 # Create your views here.
 mydb = mysql.connector.connect(
         host="localhost",
-        user="root",
-        password="hoangphuc34",
+        user="ubuntu",
+        password="root",
         database="nckh"
     )
 cursor = mydb.cursor()
@@ -177,8 +180,6 @@ def config(request):
             print(job_name, job.trigger)
     return render(request, 'function/config.html', {'context':selected_source, 'default':default})
 
-
-
 def feed_search(request):
     if request.method == "POST":
         searched = request.POST.get("searched")
@@ -186,10 +187,11 @@ def feed_search(request):
             sql = "SELECT id, link FROM web WHERE title LIKE %s"
             cursor.execute(sql, ('%' + searched + '%',))
             result = cursor.fetchall()
+            noresult = "No result found."
             if result:
                 return render(request, 'function/search.html', {'result' : result})
             else:
-                return render(request, 'function/search.html', {'result': result})
+                return render(request, 'function/search.html', {'noresult': noresult})
         else:
             return render(request, 'function/search.html', {})
     else:
@@ -215,6 +217,32 @@ def list(request):
 
     mydb.commit()
     return render(request, 'function/list.html',{'result': result, 'pages':pages})
+
+def filter(request):
+    suffix = request.GET.get('suffix')
+    results = []
+    noresult = "No result found."
+    if suffix:
+        cursor = mydb.cursor()
+        sql = "SELECT * FROM web WHERE title LIKE '%{}%'".format(suffix)
+        cursor.execute(sql)
+        results = cursor.fetchall()
+
+        total = len(results)
+
+        num_page = int(total / 10) + 1 if total % 10 != 0 else int(total / 10)
+
+        page = int(request.GET.get('page', 1))
+
+        start_index = (page - 1) * 10
+        end_index = start_index + 10
+
+        current_page_results = results[start_index:end_index]
+
+        pages = range(1, num_page + 1)
+
+        mydb.commit()
+    return render(request, 'function/list.html', {'results': current_page_results, 'suffix': suffix, 'noresult' : noresult, 'pages' : pages})
 
 def feedback(request):
     if request.method == 'POST':

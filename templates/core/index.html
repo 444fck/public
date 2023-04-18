@@ -27,17 +27,20 @@
         </ul>
     </section>
 
-    <section class="chart_content">
-        <div class="chart-container pie-chart">
-            <p>Pie Chart</p>
-            <canvas id='myPieChart'></canvas>
-        </div>
+    <div class="chart-wrapper">
+        <h2>Percentage proportion chart of attacked websites.</h2>
+        <div class="chart_content">
+            <div class="pie-chart chart-container">
+                <p>Pie Chart</p>
+                <canvas id='myPieChart'></canvas>
+            </div>
 
-        <div class="chart-container bar-chart">
-            <p>Bar Chart</p>
-            <canvas id="myBarChart"></canvas>
+            <div class="bar-chart chart-container">
+                <p>Bar Chart</p>
+                <canvas id="myBarChart"></canvas>
+            </div>
         </div>
-    </section>
+    </div>
 </div>
 {% endblock content %}
 
@@ -68,7 +71,10 @@
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-chartjs@1.1.0/dist/chartjs-adapter-chartjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-chart3d@1.1.0/dist/chartjs-plugin-chart3d.min.js"></script>
 <script>
     // Pie Chart
     var ctx = document.getElementById('myPieChart').getContext('2d');

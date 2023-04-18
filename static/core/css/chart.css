@@ -1,4 +1,4 @@
-.layout .chart-container {
+/* .layout .chart-container {
     display: inline-block;
     width: 45%;
     margin: 10px;
@@ -10,4 +10,46 @@
 
 .layout .bar-chart {
     float: right;
+}
+
+.chart_content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+} */
+
+.chart-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart_content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.chart-container {
+    width: 45%;
+    margin: 10px;
+}
+
+.pie-chart {
+    order: 1;
+    transform: translateX(-120px);
+}
+
+.bar-chart {
+    order: 2;
+    transform: translateY(100px);
+}
+
+.chart-wrapper h2 {
+    margin-top: 0;
+    text-align: center;
 }

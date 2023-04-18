@@ -51,12 +51,12 @@
             text-shadow: 0 -1px 0 #8e2800;
             transition: all 0.1s ease-in-out;
             margin-right: 10px;
+            transform: translateY(-123px);
           }
 
           .btn-pause:hover {
             background-color: #d24d3e;
             box-shadow: 0 3px 0 #8e2800;
-            transform: translateY(2px);
           }
 
           .btn-remuse {
@@ -70,12 +70,12 @@
             text-shadow: 0 -1px 0 #1e8449;
             transition: all 0.1s ease-in-out;
             margin-right: 10px;
+            transform: translateY(-123px);
           }
 
           .btn-remuse:hover {
             background-color: #2ecc71;
             box-shadow: 0 3px 0 #1e8449;
-            transform: translateY(2px);
           }
 
           .btn-stop {
@@ -88,12 +88,56 @@
             box-shadow: 0 5px 0 #1a2533;
             text-shadow: 0 -1px 0 #1a2533;
             transition: all 0.1s ease-in-out;
+            transform: translateY(-123px);
           }
 
           .btn-stop:hover {
             background-color: #2c3e50;
             box-shadow: 0 3px 0 #1a2533;
-            transform: translateY(2px);
+          }
+
+
+        /* for page of search*/
+        .no-result {
+            font-size: 20px;
+            color: gray;
+            text-align: center;
+            margin-top: 20px;
+          }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            font-size: 16px;
+            color: #333;
+            width: 300px;
+          }
+          button[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+          }
+
+          button[type="submit"]:hover {
+            background-color: #3e8e41;
+          }
+
+          button[type="submit"]:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+          }
+          btn_title {
+            font-size: 40px;
           }
     </style>
 </head>
